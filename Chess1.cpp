@@ -2,6 +2,7 @@
 # include <string>
 # include <iomanip>
 using namespace std;
+//Player 1 and Player 2 passed by reference
 void assign(string ** &p1,string ** &p2)
 {
    string a[8]={"WR1","WK1","WB1","WKI","WQ","WB2","WK2","WR2"};
@@ -48,6 +49,7 @@ void display( string ** p, string ** q,int player)
       delete []r[i];
    delete []r;
 }
+//Function Overloading 'string b' is extra over here!
 void update(int i,string **&p,string **&q,string a,string b,int x,int y)
 {
    //cout<<a<<endl;
@@ -64,6 +66,7 @@ void update(int i,string **&p,string **&q,string a,string b,int x,int y)
       }
       p[x-1][y-1]=b;
 }
+//Function Overloading 'string b' is not here
 void update(int i,string **&p,string **&q,string a,int x,int y)
 {
       int j,k,count=0;
@@ -79,6 +82,7 @@ void update(int i,string **&p,string **&q,string a,int x,int y)
       }
        p[x-1][y-1]=a;
 }
+//a is the piece and p is the player. x1 and y1 are passed by reference to get the current position
 void cur_pos(string a,string **p,int i,int &x1,int &y1)
 {
       for(int i=0;i<8;i++)
@@ -93,6 +97,7 @@ void cur_pos(string a,string **p,int i,int &x1,int &y1)
          }
       }
 }
+//Prints the possible moves given all the moves in m and number of elements as n
 void print_moves(string *m,int n)
 {
    cout<<"The possible moves for the piece are :\n";
@@ -102,6 +107,7 @@ void print_moves(string *m,int n)
       cout<<"("<<h[0]<<","<<h[1]<<")"<<endl;
    }
 }
+//Checks whether the move entered by the user is 
 int movecheck(int x,int y,string *m,int n)
 {
    string coordinate="\0";
