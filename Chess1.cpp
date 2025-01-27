@@ -16,6 +16,8 @@ void assign(string ** &p1,string ** &p2)
       p1[7][i]=c[i];
    }
 }
+
+//Printing the chess board in the console
 void display( string ** p, string ** q,int player)
 {
    string **r=new string *[8];
@@ -49,6 +51,7 @@ void display( string ** p, string ** q,int player)
       delete []r[i];
    delete []r;
 }
+
 //Function Overloading 'string b' is extra over here!
 void update(int i,string **&p,string **&q,string a,string b,int x,int y)
 {
@@ -66,6 +69,7 @@ void update(int i,string **&p,string **&q,string a,string b,int x,int y)
       }
       p[x-1][y-1]=b;
 }
+
 //Function Overloading 'string b' is not here
 void update(int i,string **&p,string **&q,string a,int x,int y)
 {
@@ -82,6 +86,7 @@ void update(int i,string **&p,string **&q,string a,int x,int y)
       }
        p[x-1][y-1]=a;
 }
+
 //a is the piece and p is the player. x1 and y1 are passed by reference to get the current position
 void cur_pos(string a,string **p,int i,int &x1,int &y1)
 {
@@ -97,6 +102,7 @@ void cur_pos(string a,string **p,int i,int &x1,int &y1)
          }
       }
 }
+
 //Prints the possible moves given all the moves in m and number of elements as n
 void print_moves(string *m,int n)
 {
@@ -107,7 +113,8 @@ void print_moves(string *m,int n)
       cout<<"("<<h[0]<<","<<h[1]<<")"<<endl;
    }
 }
-//Checks whether the move entered by the user is 
+
+//Checks whether the move entered by the user is valid
 int movecheck(int x,int y,string *m,int n)
 {
    string coordinate="\0";
@@ -120,6 +127,8 @@ int movecheck(int x,int y,string *m,int n)
    }
    return 0;
 }
+
+//moves is passed by reference 
 int possible_moves_check(string piece,string *&moves,string **checkstop)
 {
    int j=1,k=0;
@@ -136,6 +145,7 @@ int possible_moves_check(string piece,string *&moves,string **checkstop)
    }
    return k;
 }
+
 # include "possible_moves_k.h"
 # include "possible_moves.h"
 # include "check.h"
