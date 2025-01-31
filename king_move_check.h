@@ -1,9 +1,12 @@
 #include<string>
 using namespace std;
+//Given the chessboard p, the locations x and y and the player number we have to find the possible 
 int king_move_check(string **&p,int x,int y,int player)
 {
     int x2,y2,no_moves,temp=0;
     string pos;
+
+    //The chessboard from p is copied to q
     string **q=new string *[8];
     for(int i=0;i<8;i++)
         q[i]=new string[8];
@@ -18,6 +21,8 @@ int king_move_check(string **&p,int x,int y,int player)
     {
         string str[16]={"BR1","BK1","BB1","BQ","BKI","BB2","BK2","BR2",
                         "BP1","BP2","BP3","BP4","BP5","BP6","BP7","BP8"};
+        
+        //The piece "WKI" is moved to a new place (diagonally upwards)
         update(1,q,q,"WKI",x+1,y+1);
         x++;y++;
         pos+=to_string(x);
