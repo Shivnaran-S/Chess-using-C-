@@ -22,16 +22,15 @@ int king_move_check(string **&p,int x,int y,int player)
         string str[16]={"BR1","BK1","BB1","BQ","BKI","BB2","BK2","BR2",
                         "BP1","BP2","BP3","BP4","BP5","BP6","BP7","BP8"};
         
-        //The piece "WKI" is moved to a new place (diagonally upwards)
-        update(1,q,q,"WKI",x+1,y+1);
+        update(1,q,q,"WKI",x+1,y+1);  // The piece "WKI" is moved to a new place (diagonally upwards)
         x++;y++;
         pos+=to_string(x);
         pos+=to_string(y);
            for(int k=0;k<16;k++)
            {
-                cur_pos(str[k],p,player,x2,y2);
-                string *moves=new string[40];
-                no_moves=possible_moves_k(str[k],q,q,2,x2,y2,moves);
+                cur_pos(str[k],p,player,x2,y2);  // Returns the current position of str[k] in the chessboard of p through x2 and y2 which are passed by reference
+                string *moves=new string[40];  // Stores the possible moves in an array of string
+                no_moves=possible_moves_k(str[k],q,q,2,x2,y2,moves);  //Function from the header file possible_moves_k.h
                 for(int l=0;l<no_moves;l++)
                 {
                         if(pos==moves[l])
