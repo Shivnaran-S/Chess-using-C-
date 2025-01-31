@@ -2,7 +2,7 @@
 # include <string>
 # include <iomanip>
 using namespace std;
-//Player 1 and Player 2 passed by reference fghfg
+//Player 1 and Player 2 passed by reference
 void assign(string ** &p1,string ** &p2)
 {
    string a[8]={"WR1","WK1","WB1","WKI","WQ","WB2","WK2","WR2"};
@@ -54,7 +54,7 @@ void display( string ** p, string ** q,int player)
 
 //Function Overloading 'string b' is extra over here!
 //i - player
-//a - the piece to be searched for and set to null since it is moving to a new location to capture the oponent
+//a - the piece to be searched for and set to null since it is captured by the oponent
 //b - the piece to be moved to the location (x,y)
 void update(int i,string **&p,string **&q,string a,string b,int x,int y)
 {
