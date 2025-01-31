@@ -17,7 +17,7 @@ void assign(string ** &p1,string ** &p2)
    }
 }
 
-//Printing the chess board in the console
+//Printing the chess board in the console 
 void display( string ** p, string ** q,int player)
 {
    string **r=new string *[8];
@@ -53,6 +53,9 @@ void display( string ** p, string ** q,int player)
 }
 
 //Function Overloading 'string b' is extra over here!
+//i - player
+//a - the piece to be searched for and set to null since it is moving to a new location to capture the oponent
+//b - the piece to be moved to the location (x,y)
 void update(int i,string **&p,string **&q,string a,string b,int x,int y)
 {
    //cout<<a<<endl;
@@ -71,6 +74,7 @@ void update(int i,string **&p,string **&q,string a,string b,int x,int y)
 }
 
 //Function Overloading 'string b' is not here
+//The piece - a is moving to the location (x,y)
 void update(int i,string **&p,string **&q,string a,int x,int y)
 {
       int j,k,count=0;
