@@ -1,6 +1,29 @@
 #include<string>
 # include "king_move_check.h"
 using namespace std;
+/*
+* Function : possible_moves
+* Description : Updates the moves array with all the possible moves of the piece, piece(variable) using the current state which is in p
+* Parameters:
+*     - string piece : piece for which we need to find the possible moves
+*     - string p     : current state of the chessboard populated with pieces
+*     - string q     : ignore
+*     - int player   : color of the piece = { if(player==1) White; else Black; } 
+*     - int x        : x coordinate of the piece in p
+*     - int y        : y coordinate of the piece in p
+*     - string moves : array which stors the possible moves of piece
+* Returns:
+*     - int : Number of elements/ moves in the array moves 
+*/
+/*
+* The main difference between possible_moves_k and possible_moves is that possibles_moves do not inlcude the move of capturing the opponent king
+*
+* Actually now a doubt arises, is it needed to check whether the king is there in the possible moves because if the opponent king is present
+* in the possible moves then the opponent must have already noted it, and would have already moved it if not moved, then it is an illegal move
+* and however the opponent must move their king to a safe zone to proceed
+*
+* So after proper confirmation the check for the opponent king can be removed from this function and can be merged with possible_moves_k function
+*/
 int possible_moves(string piece,string ** &p,string ** &q,int player,int x,int y,string *moves)
 {
    int i=0;

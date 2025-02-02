@@ -1,9 +1,22 @@
 #include<string>
 using namespace std;
-// 
 // For user readability the moves array will be having the coordinates of the locations from 1 to 8
 // Comments are written with the assumption that the chessboard printed such that the white is printed at the bottom and the down left most piece's index is 0,0
 // While reading the comments, make yourself conscious that x represents the rows and y represents the columns in the form of a matrix but one thing to note is that the matrix indexing starts from the left down corner
+/*
+* Function : possible_moves_k
+* Description : Updates the moves array with all the possible moves of the piece, piece(variable) using the current state which is in p
+* Parameters:
+*     - string piece : piece for which we need to find the possible moves
+*     - string p     : current state of the chessboard populated with pieces
+*     - string q     : ignore
+*     - int player   : color of the piece = { if(player==1) White; else Black; } 
+*     - int x        : x coordinate of the piece in p
+*     - int y        : y coordinate of the piece in p
+*     - string moves : array which stors the possible moves of piece
+* Returns:
+*     - int : Number of elements/ moves in the array moves 
+*/
 int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int y,string *moves)
 {
    int i=0;
@@ -757,6 +770,7 @@ int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int
       }
 
       // Queen
+      // Count is set to 1 initially and it is updated till 8 to search for the possible moves in all the 8 directions
       else if(piece[1]=='Q')
       {
         int count=1,j=-1,k=-1;
@@ -764,28 +778,28 @@ int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int
         {
            switch(count)
            {
-                case 1: j=x+1;
+                case 1: j=x+1;  // One step up
                         k=y;
                         break;
-                case 2: j=x-1;
+                case 2: j=x-1;  // One step down
                         k=y;
                         break;
-                case 3: j=x;
+                case 3: j=x;    // One step right
                         k=y+1;
                         break;
-                case 4: j=x;
+                case 4: j=x;    // One step left
                         k=y-1;
                         break;
-                case 5: j=x+1;
+                case 5: j=x+1;  // Right diagonal up
                         k=y+1;
                         break;
-                case 6: j=x+1;
+                case 6: j=x+1;  // Left diagonal up
                         k=y-1;
                         break;
-                case 7: j=x-1;
+                case 7: j=x-1;  // Right diagonal down
                         k=y+1;
                         break;
-                case 8: j=x-1;
+                case 8: j=x-1;  // Left diagoanl down 
                         k=y-1;
                         break;
                 default:break;
@@ -807,7 +821,7 @@ int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int
                         i++;
                         break;
                 }
-                switch(count)
+                switch(count)  // In this switch case the value of the indices j and k are updated to the next location | increment or decrement takes place
                 {
                 case 1: j++;
                         break;
@@ -836,7 +850,7 @@ int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int
         }
       }
    }
-   return i;
+   return i; // The total number of possible moves
 }
 
 
