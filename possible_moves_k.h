@@ -5,7 +5,7 @@ using namespace std;
 // While reading the comments, make yourself conscious that x represents the rows and y represents the columns in the form of a matrix but one thing to note is that the matrix indexing starts from the left down corner
 /*
 * Function : possible_moves_k
-* Description : Updates the moves array with all the possible moves of the piece, piece(variable) using the current state which is in p
+* Description : Updates the moves array with all the possible moves of the piece(passed as an argument) using the current state which is in p
 * Parameters:
 *     - string piece : piece for which we need to find the possible moves
 *     - string p     : current state of the chessboard populated with pieces

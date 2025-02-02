@@ -2,7 +2,7 @@
 using namespace std;
 /*
 * Function : king_move_check
-* Description : Given the chessboard p, the locations x and y and the player number we have to find the possible
+* Description : Checks whether it is safe for the king to move to the location (x,y)
 * Parameters:
 *     - string p     : current state of the chessboard populated with pieces 
 *     - int x        : x coordinate of the piece(king) in p where it is about to move

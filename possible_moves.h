@@ -3,7 +3,7 @@
 using namespace std;
 /*
 * Function : possible_moves
-* Description : Updates the moves array with all the possible moves of the piece, piece(variable) using the current state which is in p
+* Description : Updates the moves array with all the possible moves of the piece(passed as an argument) using the current state which is in p
 * Parameters:
 *     - string piece : piece for which we need to find the possible moves
 *     - string p     : current state of the chessboard populated with pieces
