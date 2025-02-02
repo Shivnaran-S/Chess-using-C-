@@ -1,11 +1,15 @@
 #include<string>
 using namespace std;
+// 
+// For user readability the moves array will be having the coordinates of the locations from 1 to 8
+// Comments are written with the assumption that the chessboard printed such that the white is printed at the bottom and the down left most piece's index is 0,0
+// While reading the comments, make yourself conscious that x represents the rows and y represents the columns in the form of a matrix but one thing to note is that the matrix indexing starts from the left down corner
 int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int y,string *moves)
 {
    int i=0;
    if(player==1)
    {
-      if(piece[1]=='P')
+      if(piece[1]=='P')  
       {
          if(x==1)
          {
@@ -407,17 +411,18 @@ int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int
         }
       }
    }
-   else
+   else  // player = 2, the player is playing as white but have passed the variable player by setting it to 2, to get the possible moves of the black coins and to move the White king to a position that is not present in the moves array
    {
-      if(piece[1]=='P')
+      // Pawn
+      if(piece[1]=='P')  
       {
-         if(x==6)
+         if(x==6)  // If pawn has not moved yet, it can either move one step or two steps forward
          {
-            if(p[x-1][y]=="\0")
+            if(p[x-1][y]=="\0")  // Checking whether the piece could move forward/ (down - according to the standard board commented in the starting)
             {
-               moves[i]+=to_string(x);
-               moves[i]+=to_string(y+1);
-               i++;
+               moves[i]+=to_string(x);    // for player readability the index x-1 is stored as x itself 
+               moves[i]+=to_string(y+1);  // for user readability the indices are stored after incrementing
+               i++;  // One element has been inserted into the moves array 
                if(p[x-2][y]=="\0")
                {
                   moves[i]+=to_string(x-1);
@@ -435,6 +440,7 @@ int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int
                i++;
             }
          }
+         // Checking whether the pawn could capture any of the white pieces so that, that move could be added to the moves array
          if((x-1>=0 && x-1<=7)&&(y-1>=0 && y-1<=7)&&(p[x-1][y-1][0]=='W'))
          {
             moves[i]+=to_string(x);
@@ -448,8 +454,11 @@ int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int
             i++;
          }
       }
-      else if(piece[1]=='R')
+
+      // Rook
+      else if(piece[1]=='R')  
       {
+         // Updating the moves array with possible moves to the down of the Rook
          for(int j=x-1;j>=0;j--)
          {
             if(p[j][y]=="\0")
@@ -458,9 +467,9 @@ int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int
                moves[i]+=to_string(y+1);
                i++;
             }
-            else if(p[j][y][0]=='B' )
+            else if(p[j][y][0]=='B' )  // If the first piece to the down of the Rook is Black leave without adding it to moves 
                break;
-            else if(p[j][y][0]=='W' )
+            else if(p[j][y][0]=='W' )  // If the first piece to the down of the Rook is White add it to the moves array and leave
             {
                moves[i]+=to_string(j+1);
                moves[i]+=to_string(y+1);
@@ -468,6 +477,7 @@ int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int
                break;
             }
          }
+         // Updating the moves array with possible moves towards the upward direction of the Rook
          for(int j=x+1;j<8;j++)
          {
             if(p[j][y]=="\0")
@@ -486,6 +496,7 @@ int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int
                break;
             }
          }
+         // Updating the moves array with possible moves to the left of the Rook
          for(int j=y-1;j>=0;j--)
          {
             if(p[x][j]=="\0")
@@ -504,6 +515,7 @@ int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int
                break;
             }
          }
+         // Updating the moves array with possible moves to the right of the Rook
          for(int j=y+1;j<8;j++)
          {
             if(p[x][j]=="\0")
@@ -523,8 +535,10 @@ int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int
             }
          }
       }
+      // Bishop
       else if(piece[1]=='B')
       {
+         // Left diagonal down
          int j=x-1;
          int k=y-1;
          while((j>=0)&&(k>=0))
@@ -547,6 +561,8 @@ int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int
             j-=1;
             k-=1;
          }
+
+         // Left diagonal up
          j=x-1;
          k=y+1;
          while((j>=0)&&(k<=7))
@@ -569,6 +585,8 @@ int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int
             j-=1;
             k+=1;
          }
+
+         // Right diagonal down
          j=x+1;
          k=y-1;
          while((j<=7)&&(k>=0))
@@ -591,6 +609,8 @@ int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int
             j+=1;
             k-=1;
          }
+
+         // Right diagonal up
          j=x+1;
          k=y+1;
          while((j<=7)&&(k<=7))
@@ -614,6 +634,7 @@ int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int
             k+=1;
          }
       }
+      // Knight ( ensuring it is not King )
       else if(piece[1]=='K' && piece[2]!='I')
       {
          int j=x+2;int k=y+1;
@@ -674,58 +695,59 @@ int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int
          }
 
       }
+      // King
       else if(piece[1]=='K' && piece[2]=='I')
       {
-         int j=x-1;int k=y-1;
+         int j=x-1;int k=y-1;  // Left diagonal down
          if((j>=0)&&(k>=0)&&(p[j][k]=="\0" || (p[j][k][0]=='W')))
          {
             moves[i]+=to_string(j+1);
             moves[i]+=to_string(k+1);
             i++;
          }
-         j=x-1;k=y;
+         j=x-1;k=y;  // One step downwards
          if((j>=0)&&(p[j][k]=="\0" || (p[j][k][0]=='W')))
          {
             moves[i]+=to_string(j+1);
             moves[i]+=to_string(k+1);
             i++;
          }
-         j=x-1;k=y+1;
+         j=x-1;k=y+1;  // Right diagonal down
          if((j>=0)&&(k<=7)&&(p[j][k]=="\0" || (p[j][k][0]=='W')))
          {
             moves[i]+=to_string(j+1);
             moves[i]+=to_string(k+1);
             i++;
          }
-         j=x;k=y-1;
+         j=x;k=y-1;  // One step to the left
          if((k>=0)&&(p[j][k]=="\0" || (p[j][k][0]=='W')))
          {
             moves[i]+=to_string(j+1);
             moves[i]+=to_string(k+1);
             i++;
          }
-         j=x;k=y+1;
+         j=x;k=y+1;  // One step to the right
          if((k<=7)&&(p[j][k]=="\0" || (p[j][k][0]=='W')))
          {
             moves[i]+=to_string(j+1);
             moves[i]+=to_string(k+1);
             i++;
          }
-         j=x+1;k=y-1;
+         j=x+1;k=y-1;  // Left diagonal up 
          if((j<=7)&&(k>=0)&&(p[j][k]=="\0" || (p[j][k][0]=='W')))
          {
             moves[i]+=to_string(j+1);
             moves[i]+=to_string(k+1);
             i++;
          }
-         j=x+1;k=y;
+         j=x+1;k=y;  // One step up
          if((j<=7)&&(p[j][k]=="\0" || (p[j][k][0]=='W')))
          {
             moves[i]+=to_string(j+1);
             moves[i]+=to_string(k+1);
             i++;
          }
-         j=x+1;k=y+1;
+         j=x+1;k=y+1;  // Right diagonal up
          if((j<=7)&&(k<=7)&&(p[j][k]=="\0" || (p[j][k][0]=='W')))
          {
             moves[i]+=to_string(j+1);
@@ -733,6 +755,8 @@ int possible_moves_k(string piece,string ** &p,string ** &q,int player,int x,int
             i++;
          }
       }
+
+      // Queen
       else if(piece[1]=='Q')
       {
         int count=1,j=-1,k=-1;

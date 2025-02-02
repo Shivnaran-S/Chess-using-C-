@@ -2,7 +2,9 @@
 # include <string>
 # include <iomanip>
 using namespace std;
-//Player 1 and Player 2 passed by reference modified
+// Player 1 and Player 2 passed by reference
+// Player 1 will play as White and Player 2 will play as Black
+// all xs' and ys' are indices of the matrix (chessboard), they are in the range of 0 to 7 both inclusive
 void assign(string ** &p1,string ** &p2)
 {
    string a[8]={"WR1","WK1","WB1","WKI","WQ","WB2","WK2","WR2"};

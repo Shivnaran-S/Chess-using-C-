@@ -1,12 +1,12 @@
 #include<string>
 using namespace std;
-//Given the chessboard p, the locations x and y and the player number we have to find the possible 
+// Given the chessboard p, the locations x and y and the player number we have to find the possible 
 int king_move_check(string **&p,int x,int y,int player)
 {
     int x2,y2,no_moves,temp=0;
     string pos;
 
-    //The chessboard from p is copied to q
+    // The chessboard from p is copied to q
     string **q=new string *[8];
     for(int i=0;i<8;i++)
         q[i]=new string[8];
@@ -28,7 +28,8 @@ int king_move_check(string **&p,int x,int y,int player)
         pos+=to_string(y);
            for(int k=0;k<16;k++)
            {
-                cur_pos(str[k],p,player,x2,y2);  // Returns the current position of str[k] in the chessboard of p through x2 and y2 which are passed by reference
+                // Returns the current position of str[k] in the chessboard of p through x2 and y2 which are passed by reference
+                cur_pos(str[k],p,player,x2,y2);  
                 string *moves=new string[40];  // Stores the possible moves in an array of string
                 no_moves=possible_moves_k(str[k],q,q,2,x2,y2,moves);  //Function from the header file possible_moves_k.h
                 for(int l=0;l<no_moves;l++)
