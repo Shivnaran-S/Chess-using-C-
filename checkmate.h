@@ -2,21 +2,21 @@
 using namespace std;
 
 /**
-* @brief Updates checkstop[k] a 1d array of 2d array checkstop with the possible moves of piece to stop the check on king 
+* @brief Updates checkstop[k] a 1d array of 2d array checkstop with only the possible moves of piece to stop the check on king 
 * @param p Contains the chessoard
 * @param piece The piece which could be moved to stop the check on king
 * @param player Current player is Black or White
 * @param checkstop A 2d array of size 16*40, which needs to updated with the possible moves of piece to stop the check on king
-* @param k Denotes the row index of checkstop which needs to be updated with the moves to stop the check 
+* @param k Denotes the row index of checkstop the row where the particular piece is stored, which needs to be updated with the moves to stop the check 
 */
 void new_board(string **&p,string piece,int player,string **&checkstop,int k)
 {
-    int i,j,x,y,z=1,no_moves,l;
+    int i,j,x,y,z=1,no_moves,l;  // Since the first column of checkstop contains the 16 pieces, moves have to be updated from the second column so z=1
     string temp;
     string *moves=new string[40];
     cur_pos(piece,p,player,x,y);  // The current position of piece in the chessboard of p is updated in x and y which are passed by reference
     no_moves=possible_moves(piece,p,p,player,x,y,moves);  // To update moves array with no_moves possible moves of piece at (x,y) in p
-    cout<<piece<<" ";print_moves(moves,no_moves);  // //Prints the possible moves given all the moves in m and number of elements as n
+    cout<<piece<<" ";print_moves(moves,no_moves);  // Prints the possible moves given all the moves in moves array and number of moves in no_moves
     if(no_moves>0)
     {
         for(i=0;i<no_moves;i++)
@@ -36,7 +36,7 @@ void new_board(string **&p,string piece,int player,string **&checkstop,int k)
             temp=check(q,q,player);  // The current location of king(not as matrix indices) in string[0] and string[1] and the rest(string[2:]) contains the number of attackers on king
             if(temp[2]=='0')  // No opponent is attacking the king
             {
-                checkstop[k][z]=moves[i];  // Updating checkstop with the moves that could stop the check on king
+                checkstop[k][z]=moves[i];  // Updating checkstop with only the moves that could stop the check on king
                 z++;
             }
             for(l=0;l<8;l++)
