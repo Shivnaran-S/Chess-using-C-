@@ -58,6 +58,7 @@ void display( string ** p, string ** q,int player)
 //i - player
 //a - the piece to be searched for and set to null since it is captured by the oponent
 //b - the piece to be moved to the location (x,y)
+//Assumption to be confirmed is that a is replaced by b
 void update(int i,string **&p,string **&q,string a,string b,int x,int y)
 {
    //cout<<a<<endl;
